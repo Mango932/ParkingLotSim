@@ -1,14 +1,9 @@
-/**
- * @author Mehrdad Sabetzadeh, University of Ottawa
- *
- */
 public class Spot {
 	private Car car;
 	private int timestamp;
 
 	public Car getCar() {
 		return car;
-
 	}
 
 	public void setCar(Car car) {
@@ -17,13 +12,10 @@ public class Spot {
 
 	public int getTimestamp() {
 		return timestamp;
-
 	}
 
 	public void setTimestamp(int timestamp) {
-
 		this.timestamp = timestamp;
-		
 	}
 
 	public Spot(Car car, int timestamp) {
@@ -33,9 +25,9 @@ public class Spot {
 
 	/**
 	 * Returns a string representation of the spot
-	 * This method is complete; you do not need to change it.
 	 */
 	public String toString() {
 		return car + ", timestamp: " + timestamp;
 	}
+
 }
