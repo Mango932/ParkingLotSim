@@ -70,11 +70,29 @@ public class LinkedQueue<D> implements Queue<D> {
 	}
 
 	public D peek() {
-		throw new UnsupportedOperationException("This method has not been implemented yet!");
+		D elem = dequeue();
+		Queue<D> tempQueue = new LinkedQueue<D>();
+		while(!isEmpty()) {
+			tempQueue.enqueue(dequeue());
+		}
+		enqueue(elem);
+		while(!tempQueue.isEmpty()) {
+			enqueue(tempQueue.dequeue());
+		}
+		return elem;
 	}
 
 	public int size() {
-		throw new UnsupportedOperationException("This method has not been implemented yet!");
+		int size = 0;
+		Queue<D> tempQueue = new LinkedQueue<D>();
+		while(!isEmpty()) {
+			tempQueue.enqueue(dequeue());
+			size++;
+		}
+		while(!tempQueue.isEmpty()) {
+			enqueue(tempQueue.dequeue());
+		}
+		return size;
 	}
 
 	public String toString() {
