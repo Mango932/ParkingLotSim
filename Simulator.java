@@ -92,7 +92,10 @@ public class Simulator {
 	}
 
 	private void processDeparture() {
-		for (int i = 0; i < lot.getCapacity(); i++) {
+		if (lot.getOccupancy() == 0) {
+			return;
+		}
+		for (int i = 0; i < lot.getOccupancy(); i++) {
 				Spot spot = lot.getSpotAt(i);
 
 				if (spot != null) {
@@ -130,23 +133,23 @@ public class Simulator {
 			processArrival();
 
 			processDeparture();
-
+			
 			if (incomingQueue.peek() != null) {
 				boolean isProcessed = lot.attemptParking(incomingQueue.peek().getCar(), clock);
-
+				
 				if (isProcessed) {
-					System.out.println(incomingQueue.peek().getCar() + " ENTERED at timestep " + clock
-							+ "; occupancy is at " + lot.getOccupancy());
+					// System.out.println(incomingQueue.peek().getCar() + " ENTERED at timestep " + clock
+					// + "; occupancy is at " + lot.getOccupancy());
 					incomingQueue.dequeue();
 				}
-
+				
 			}
-
+			
 			if (!outgoingQueue.isEmpty()) {
-				System.out.println(outgoingQueue.peek().getCar() + " EXITED at timestep " + clock + "; occupancy is at " + lot.getOccupancy());
+				// System.out.println(outgoingQueue.peek().getCar() + " EXITED at timestep " + clock + "; occupancy is at " + lot.getOccupancy());
 				outgoingQueue.dequeue();
 			}
-
+			
 			clock++;
 		}
 	}
@@ -156,4 +159,11 @@ public class Simulator {
 		return incomingQueue.size();
 	
 	}
+
+	// public static void main(String[] args) {
+	// 	Simulator sim = new Simulator(new ParkingLot(1), 1, 86400);
+	// 	sim.simulate();
+	// 	System.out.println(sim.getIncomingQueueSize());
+
+	// }
 }

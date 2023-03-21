@@ -42,11 +42,7 @@ public class ParkingLot {
 	 * @param timestamp is the (simulated) time when the car gets parked in the lot
 	 */
 	public void park(Car c, int timestamp) {
-		for (int i=0; i < capacity; i++) {
-			if (occupancy.get(i) == null) {
-				occupancy.add(new Spot(c,timestamp));
-			}
-		}
+		occupancy.add(new Spot(c,timestamp));
 	}
 
 	/**
@@ -56,20 +52,13 @@ public class ParkingLot {
 	 * @return the car (spot) that has been removed
 	 */
 	public Spot remove(int i) {
-	
-		if (occupancy.get(i) == null) {
-			return null;
-		}
-		if (capacity-1 < i) {
-			return null;
-		}
 		Spot removedSpot = occupancy.remove(i);
 		return removedSpot;
 
 	}
 
 	public boolean attemptParking(Car c, int timestamp) {
-		if (occupancy.size() != capacity) {
+		if (getOccupancy() != getCapacity()) {
 			park(c,timestamp);
 			return true;
 		}
@@ -91,22 +80,14 @@ public class ParkingLot {
 	 * @return the spot instance at a given position (i, j)
 	 */
 	public Spot getSpotAt(int i) {
-
 		return occupancy.get(i);
-
 	}
 
 	/**
 	 * @return the total number of cars parked in the lot
 	 */
 	public int getOccupancy() {
-		int occupiedParkingSpots = 0;
-		for (int i = 0; i < capacity; i++) {
-			if(occupancy.get(i) != null) {
-				occupiedParkingSpots++;
-			}
-		}
-		return occupiedParkingSpots;
+		return occupancy.size();
 	}
 
 	/**
