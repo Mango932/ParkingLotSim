@@ -12,7 +12,7 @@ public class CapacityOptimizer {
 		while(true) {
 			System.out.println("==== Setting lot capacity to: "+ (n+1) + "====");
 			avgIncomingQueueSize = 0;
-			for (int i=0; i < 10; i++) {
+			for (int i=0; i < NUM_RUNS; i++) {
 				lot = new ParkingLot(n);
 				Simulator sim = new Simulator(lot, hourlyRate, 86400);
 				long start, end;
@@ -29,7 +29,7 @@ public class CapacityOptimizer {
 			System.out.println(avgIncomingQueueSize);
 
 
-			if (avgIncomingQueueSize <= 5) {
+			if (avgIncomingQueueSize <= THRESHOLD) {
 				break;
 			} else {
 				n++;
