@@ -70,6 +70,9 @@ public class LinkedQueue<D> implements Queue<D> {
 	}
 
 	public D peek() {
+		if (isEmpty()) {
+			return null;
+		}
 		D elem = dequeue();
 		Queue<D> tempQueue = new LinkedQueue<D>();
 		while(!isEmpty()) {
