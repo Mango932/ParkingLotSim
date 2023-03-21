@@ -30,7 +30,7 @@ public class TriangularDistribution {
 			this.b = b;
 		} else {
 		
-			// Hint: throw an appropriate exception here!
+			throw new IllegalArgumentException("Invalid parameters: a <= c <= b and a < b");
 	
 		}
 	}
@@ -40,6 +40,15 @@ public class TriangularDistribution {
 	 * @return the probability density at point x
 	 */
 	public Rational pdf(int x) {
+		if (x > b) {
+			throw new IllegalArgumentException("x must be less or equal to b");
+		}
+		if (a >= b) {
+			throw new IllegalArgumentException("a must be less than b");
+		}
+		if (c <= a || c >= b) {
+			throw new IllegalArgumentException("c must be between a and b");
+		}
 
 		if (x < a)
 			return Rational.zero;

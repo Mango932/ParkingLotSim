@@ -27,7 +27,7 @@ public class ParkingLot {
 		if (capacity < 0) {
 		
 			// Hint: throw a suitable exception here.
-			throw new NegativeArraySizeException();
+			throw new IllegalArgumentException("Invalid capacity " + capacity);
 		
 		}
 
@@ -42,6 +42,9 @@ public class ParkingLot {
 	 * @param timestamp is the (simulated) time when the car gets parked in the lot
 	 */
 	public void park(Car c, int timestamp) {
+		if (timestamp < 0) {
+			throw new IllegalArgumentException("Invalid timestamp " + timestamp);
+		}
 		occupancy.add(new Spot(c,timestamp));
 	}
 
@@ -52,12 +55,22 @@ public class ParkingLot {
 	 * @return the car (spot) that has been removed
 	 */
 	public Spot remove(int i) {
+
+		if (i < 0 || i > occupancy.size()) {
+			throw new IndexOutOfBoundsException(i + " is out of bounds for the occupancy of the parking lot");
+		}
+
 		Spot removedSpot = occupancy.remove(i);
 		return removedSpot;
 
 	}
 
 	public boolean attemptParking(Car c, int timestamp) {
+
+		if (timestamp < 0) {
+			throw new IllegalArgumentException("Invalid timestamp " + timestamp);
+		}
+
 		if (getOccupancy() != getCapacity()) {
 			park(c,timestamp);
 			return true;
@@ -80,6 +93,9 @@ public class ParkingLot {
 	 * @return the spot instance at a given position (i, j)
 	 */
 	public Spot getSpotAt(int i) {
+		if (i < 0 || i > occupancy.size()) {
+			throw new IndexOutOfBoundsException(i + " is out of bounds for the occupancy of the parking lot");
+		}
 		return occupancy.get(i);
 	}
 

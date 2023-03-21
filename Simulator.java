@@ -70,6 +70,15 @@ public class Simulator {
 	 * @param steps is the total number of steps for simulation
 	 */
 	public Simulator(ParkingLot lot, int perHourArrivalRate, int steps) {
+		if (perHourArrivalRate < 0) {
+			throw new IllegalArgumentException("The perHourArrivalRate must be positive");
+		}
+		if (steps < 1) {
+			throw new IllegalArgumentException("steps must be a positive number");
+		}
+		if (lot == null) {
+			throw new IllegalArgumentException("ParkingLot cannot be null");
+		}
 	
 		this.lot = lot;
 
