@@ -16,9 +16,9 @@ public class StudentInfo {
     public static void display() {
 
         System.out.println("************************************************************");
-        System.out.println("*                    Samuel Marchetti                      *");
-        System.out.println("*                       300273074                          *");
-        System.out.println("*                          C03                             *");
+        System.out.println("*            Samuel Marchetti and Alec Fraser              *");
+        System.out.println("*                 300273074, 300273073                     *");
+        System.out.println("*                       C03, A01                           *");
         System.out.println("*                                                          *");
         System.out.println("************************************************************");
         System.out.println();
